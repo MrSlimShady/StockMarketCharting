@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/auth-service.service';
 import { Exchange } from 'src/app/model/exchange';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.prod';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 
 @Component({
