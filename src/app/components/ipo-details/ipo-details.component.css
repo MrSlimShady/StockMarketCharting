@@ -1,0 +1,19 @@
+table {
+    width: 100%;
+  }
+
+
+  .mat-header-cell{
+    text-align: left;
+    padding: 7px;
+  }
+
+  .mat-cell{
+    padding: 7px;
+  }
+
+
+  .main{
+    padding: 20px;
+    width: 80%;
+  }

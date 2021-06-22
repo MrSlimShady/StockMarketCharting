@@ -1,0 +1,51 @@
+
+<div class="row align-items-center align-self-center justify-content-center">
+<mat-card fxFlex="30" >
+<div class="form" fxLayoutAlign="center center" fxLayout="column">
+    <input type="file" class="file-input"
+    (change)="onFileSelect($event)" #fileUpload>
+    
+    <div class="file-upload">
+        <span>
+        {{fileName || "No file uploaded yet."}}
+    </span>
+        <button mat-mini-fab class="upload-btn"
+        (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>
+    </button>
+    </div>
+    
+    <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">
+        <button mat-raised-button class="sub-btn" type="submit">Upload</button>
+    </form>
+</div>
+</mat-card>
+</div>
+
+
+
+
+<div *ngIf="hasData" class="row">
+<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Company Code</th>
+      <th scope="col">Exchange</th>
+      <th scope="col">Price Per Share</th>
+      <th scope="col">Date</th>
+      <th scope="col">Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let s of stockPrice">
+      
+      <td>{{s.companyCode}}</td>
+      <td>{{s.stockExchange}}</td>
+      <td>{{s.currentPrice}}</td>
+      <td>{{s.date| date}}</td>
+      <td>{{s.time}}</td>
+
+    </tr>
+  </tbody>
+</table>
+</div>

@@ -1,0 +1,83 @@
+
+<div class="flex-column">
+<form fxLayoutAlign="stretch"  class="company-form" [formGroup]="compareCompanyForm" (ngSubmit)="addchart()">
+  <div class="col flex-wrap">
+    <mat-card fxLayout="column" >
+        <mat-toolbar color="accent">Add Company 1</mat-toolbar>
+            
+
+            
+            <mat-form-field class="example-full-width">
+                <mat-label>Name</mat-label>
+                <input type="text"
+                    placeholder="Pick one"
+                    aria-label="Number"
+                    matInput
+                    [formControl]="companyname"
+                    [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Stock Exchange</mat-label>
+                <mat-select [formControl]="stockexchange">
+                    <mat-option *ngFor="let e of exchange" [value]="e.id">
+                          {{e.stockExchange}}
+                    </mat-option>
+                </mat-select>  
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Enter a date range</mat-label>
+              <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate placeholder="Start date" [formControl]="startdate">
+                <input matEndDate placeholder="End date" [formControl]="enddate">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Chart Type</mat-label>
+              <mat-select [formControl]="chartType">
+                  <mat-option *ngFor="let c of charts" [value]="c">
+                        {{c}}
+                  </mat-option>
+              </mat-select>  
+            </mat-form-field>
+
+                <button class="submit"  mat-raised-button  type="submit">View Chart</button>
+
+            
+    </mat-card>        
+  </div>
+</form>
+      <div class="row">
+      <fusioncharts *ngIf="view"
+      width="600"
+      height="400"
+      [type]="type"
+      [dataFormat]="dataFormat"
+      [dataSource]="dataSource1"
+      >
+      </fusioncharts>
+
+      </div>
+</div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  

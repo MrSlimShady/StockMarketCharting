@@ -1,0 +1,19 @@
+.row{
+    padding-top: 25px;
+}
+.col{
+    padding: 10px;
+}
+.flex-column{
+    padding-left: 250px;
+    padding-right: 250px;
+    padding-top: 20px;
+}
+.mat-toolbar{
+    background-color: crimson;
+    color: white;
+}
+.submit{
+    background-color:crimson;
+    color: white;
+}

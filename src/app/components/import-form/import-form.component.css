@@ -1,0 +1,32 @@
+.file-input {
+    display: none;
+  }
+
+.mat-card{
+  margin-top: 50px;
+}
+
+.form{
+  display: inline-block;
+}
+
+.file-upload{
+  padding-bottom: 20px;
+}
+
+.upload-btn{
+  background-color: cadetblue;
+}
+
+.sub-btn{
+  background-color: crimson;
+  color: white;
+}
+
+.span{
+  font-size: 150%;
+}
+
+.row{
+  padding-top: 20px;
+}

@@ -1,0 +1,27 @@
+.main-div{
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.flex-column{
+    padding-left: 250px;
+    padding-right: 250px;
+    padding-top: 20px;
+}
+
+.col-form-label{
+    padding-top: 12px;
+    font-size: 17px;
+    font-weight: 500;
+
+}
+
+.mat-toolbar{
+    background-color: crimson;
+    color: white;
+}
+
+.submit{
+    background-color:crimson;
+    color: white;
+}

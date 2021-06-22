@@ -1,0 +1,51 @@
+<div fxLayoutAlign="center center" fxFlexFill class="main-div">
+    <mat-card fxFlex="35">
+        <mat-toolbar color="primary">Sign Up</mat-toolbar>
+        <form fxLayoutAlign="stretch" fxLayout="column" class="form" [formGroup]="registerForm" (ngSubmit)="register()">
+            
+            <mat-form-field>
+                <input matInput placeholder="Username" formControlName="username">
+                <mat-error *ngIf="hasError('username', 'required')">Username is <strong>required</strong></mat-error>
+            </mat-form-field>
+        
+            <mat-form-field>
+                <input matInput type="password" placeholder="Password" formControlName="password">
+                <mat-error *ngIf="hasError('password','minlength')">
+                    Plassword length must be 8 characters long
+                  </mat-error>
+                  <mat-error *ngIf="hasError('password','required')">
+                    Password is <strong>required</strong>
+                  </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput type="email" placeholder="Email" formControlName="email">
+                <mat-error *ngIf="hasError('email','email') && !hasError('email','required')">
+                    Please enter a valid email address
+                  </mat-error>
+                  <mat-error *ngIf="hasError('email','required')">
+                    Email is <strong>required</strong>
+                  </mat-error>
+                
+            
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput type="mobileNumber" placeholder="Mobile" formControlName="mobileNumber">
+                <mat-error *ngIf="hasError('mobileNumber','maxlength') || hasError('mobileNumber','minlength')">
+                    Please enter 10 digit Mobile Number
+                  </mat-error>
+                  <mat-error *ngIf="hasError('mobileNumber','required')">
+                    Mobile Number is <strong>required</strong>
+                  </mat-error>
+
+            </mat-form-field>
+        
+            
+        
+            <button mat-raised-button color="warn" type="submit">Register</button>
+                
+          </form>
+          
+    </mat-card>
+</div>

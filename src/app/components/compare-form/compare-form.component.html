@@ -1,0 +1,22 @@
+<div class="button-container" fxLayoutAlign="center">
+    <button mat-mini-fab color="accent" aria-label="icon button" (click)="addCompany()">
+      <mat-icon>business</mat-icon>   
+    </button>
+    <span style="font-size: 150%;">Compare Companies    </span>
+    <button mat-mini-fab color="accent" aria-label="icon button" (click)="addSector()">
+      <mat-icon>add</mat-icon>
+    </button>
+    <span>Compare Sectors</span>
+</div>
+
+
+<fusioncharts
+  width=600
+  height=500
+  type="msline"
+  [dataFormat]="dataFormat"
+  [dataSource]="dataSource"
+>
+</fusioncharts>
+
+

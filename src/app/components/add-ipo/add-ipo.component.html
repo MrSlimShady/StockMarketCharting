@@ -1,0 +1,99 @@
+<div class="flex-column">
+    <mat-card >
+        <mat-toolbar color="primary">Add/Update Ipo</mat-toolbar>
+        <form fxLayoutAlign="stretch" fxLayout="column" class="ipo-form" [formGroup]="ipoForm" (ngSubmit)="add()">
+            
+            <div class="form-group row">             
+                <label class="col-sm-3 col-form-label"> Company Name </label>
+                <div class="col">     
+                    <mat-form-field class="col-sm-12">
+                        <input matInput placeholder="Company Name" formControlName="companyName">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="form-group row">             
+                <label class="col-sm-3 col-form-label"> Exchange Name </label>
+                <div class="col">     
+                    <mat-form-field class="col-sm-12">
+                        <input matInput placeholder="Stock Exchange" formControlName="stockExchange">
+                    </mat-form-field>
+                </div>
+            </div>
+            
+            <div class="form-group row">             
+                <label class="col-sm-3 col-form-label"> Price </label>
+                <div class="col">     
+                    <mat-form-field class="col-sm-12">
+                        <input matInput placeholder="Price per Share" formControlName="pricePerShare">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="form-group row">             
+                <label class="col-sm-3 col-form-label"> Total Shares </label>
+                <div class="col">     
+                    <mat-form-field class="col-sm-12">
+                        <input matInput placeholder="Total Shares" formControlName="totalShares">
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+            <div class="form-group row">             
+                <label class="col-sm-3 col-form-label"> Launch Date </label>
+                <div class="col">     
+                    <mat-form-field appearance="fill" class="col-sm-12">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [matDatepicker]="picker" [formControl]="date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="form-group row">             
+                <label class="col-sm-3 col-form-label"> Remarks </label>
+                <div class="col">     
+                    <mat-form-field class="col-sm-12">
+                        <input matInput placeholder="Remarks..." formControlName="remarks">
+                    </mat-form-field>  
+                </div>
+            </div>
+                      
+            <button class= "submit" mat-raised-button type="submit">List IPO</button>
+          </form>
+          
+    </mat-card>
+</div>
+<div class="row">
+    <table class="table table-hover table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Company</th>
+          <th scope="col">Exchange</th>
+          <th scope="col">Price Per Share</th>
+          <th scope="col">Total share</th>
+          <th scope="col">Opening Date</th>
+          <th scope="col">Remarks</th>
+          <th scope="col"> Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor = "let ipo of ipoList">
+          
+          <td>{{ipo.companyName}}</td>
+          <td>{{ipo.stockExchange}}</td>
+          <td>{{ipo.pricePerShare}}</td>
+          <td>{{ipo.totalShares}}</td>
+          <td>{{ipo.openingDate| date}}</td>
+          <td>{{ipo.remarks}}</td>
+          <td> 
+            <a (click)="edit(ipo)">Edit | </a>
+            <a (click)="delist(ipo)">Delist</a> 
+          </td>
+    
+        </tr>
+      </tbody>
+    </table>
+    </div>

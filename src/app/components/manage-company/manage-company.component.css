@@ -1,0 +1,23 @@
+table {
+    width: 100%;
+}
+
+
+.mat-header-cell{
+  text-align: center;
+}
+
+.mat-cell{
+  padding: 10px;
+}
+.flex-column{
+  padding-top: 30px;
+}
+
+.button-container{
+  padding-top: 20px;  
+}
+
+.edit{
+  background-color: green;
+}

@@ -1,0 +1,43 @@
+<mat-toolbar>
+    
+     <div class="head">   
+    <h1>Stock-Market Charting</h1>
+</div>
+    
+    
+    
+    <span class="example-spacer"></span>
+    <div *ngIf="isLoggedin&&!isAdmin" class="nav-item">
+        <a  [routerLink]="['/ipo']" class="nav-link">IPOs </a> 
+    </div>
+    <div *ngIf="isLoggedin&&!isAdmin" class="nav-item">
+        <!-- <a [routerLink]="['/compare']" class="nav-link">Compare Company/Sector  </a>  -->
+        <button  mat-button [matMenuTriggerFor]="menu">Compare Company/Sector</button>
+        <mat-menu #menu="matMenu">
+        <button [routerLink]="['/compare/company']" mat-menu-item>company</button>
+        <button  [routerLink]="['/compare/sector']" mat-menu-item>sector</button>
+        </mat-menu>
+
+    </div>
+    <div *ngIf="isLoggedin&&isAdmin" class="nav-item">
+        <a  [routerLink]="['/import']" class="nav-link">Import  </a> 
+    </div>
+    <div *ngIf="isLoggedin&&isAdmin" class="nav-item">
+        <a  [routerLink]="['/manage/company']" class="nav-link">Manage Company  </a> 
+    </div>
+    <div *ngIf="isLoggedin&&isAdmin" class="nav-item">
+        <a  [routerLink]="['/manage/exchange']" class="nav-link">Manage Exchange  </a> 
+    </div>
+    <div  *ngIf="isLoggedin&&isAdmin" class="nav-item">
+        <a  [routerLink]="['/manage/ipo']" class="nav-link">Update IPO  </a>
+    </div>
+    <div *ngIf="!isLoggedin" class="nav-item">
+    <a [routerLink]="['/register']" class="nav-link">Register  </a> 
+    </div>
+    <div *ngIf="!isLoggedin" class="nav-item">
+    <a  [routerLink]="['/login']" class="nav-link">Login  </a> 
+    </div>
+    <div *ngIf="isLoggedin" class="nav-item">
+        <a  [routerLink]="['/login']" class="nav-link" (click)="logout()">Logout</a> 
+    </div>
+  </mat-toolbar>

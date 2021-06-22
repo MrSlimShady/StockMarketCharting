@@ -1,0 +1,60 @@
+<div class="flex-column">
+  <mat-card fxLayoutAlign="stretch" >
+    <h2>All Companies</h2>
+  </mat-card>
+
+  <table mat-table [dataSource]="companyList" class="mat-elevation-z8">
+      <ng-container matColumnDef="companyName">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="companyCEO">
+        <th mat-header-cell *matHeaderCellDef> CEO </th>
+        <td mat-cell *matCellDef="let element"> {{element.companyCEO}} </td>
+      </ng-container>
+      <ng-container matColumnDef="companyTurnover">
+        <th mat-header-cell *matHeaderCellDef> Turnover </th>
+        <td mat-cell *matCellDef="let element"> {{element.companyTurnover}} </td>
+      </ng-container>
+      <ng-container matColumnDef="boardOfDirectors">
+          <th mat-header-cell *matHeaderCellDef> Board Of Directors </th>
+          <td mat-cell *matCellDef="let element"> {{element.boardOfDirectors}} </td>
+        </ng-container>
+      <ng-container matColumnDef="listedExchanges">
+          <th mat-header-cell *matHeaderCellDef> Stock Exchange </th>
+          <td mat-cell *matCellDef="let element"> <span *ngFor="let exchange of element.listedExchanges">
+            {{exchange.stockExchange}}
+          </span> </td>
+      </ng-container>
+      <ng-container matColumnDef="sector">
+        <th mat-header-cell *matHeaderCellDef> Sector </th>
+        <td mat-cell *matCellDef="let element"> {{element.sector.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element" class="action-link"> 
+          <div class="btn">
+            <button class="edit" mat-mini-fab aria-label="icon button" (click)="openDialog('Update',element)"><mat-icon>edit</mat-icon></button> 
+          </div>
+          <div class="btn">
+            <button class="del" mat-mini-fab color="warn" aria-label="icon button" (click)="openDialog('Delete',element)"><mat-icon>delete</mat-icon></button>
+          </div>
+          
+        </td>
+      </ng-container>
+    
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <div class="button-container" fxLayoutAlign="center">
+    <button mat-mini-fab color="accent" aria-label="icon button" (click)="add()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+
+  
+  

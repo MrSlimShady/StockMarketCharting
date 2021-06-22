@@ -1,0 +1,133 @@
+<div class="flex-column">
+    <mat-card>
+        <mat-toolbar color="accent">Add Company</mat-toolbar>
+        <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="companyForm" (ngSubmit)="add()">
+            
+            <div class="form-group row">
+                
+                    <label class="col-sm-3 col-form-label"> Company Name </label>
+                <div class="col">
+                    <mat-form-field class="col-sm-12" >
+                        <input matInput placeholder="Company Name" formControlName="companyName">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label"> CEO</label>
+                <div class="col">
+                    <mat-form-field class="col-sm-12">
+                        <input matInput placeholder="CEO" formControlName="companyCEO">
+                    </mat-form-field>
+                    
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Turnover</label>
+                <div class="col">
+                    <mat-form-field class="col-sm-12">
+                        <input matInput placeholder="Turnover" formControlName="companyTurnover">
+                    </mat-form-field>
+                    
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label"> Board Of Directors</label>
+                <div class="col">
+                    <mat-form-field class="col-sm-12">
+                        <input matInput placeholder="B.O.D." formControlName="boardOfDirectors">
+                    </mat-form-field>
+                    
+                    
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label"> Description</label>
+                <div class="col">
+                    <mat-form-field class="col-sm-12">
+                        <input matInput placeholder="Description.." formControlName="companyDesc">
+                    </mat-form-field>
+                    
+                    
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label"> Sector</label>
+                <div class="col">
+                    <mat-form-field appearance="fill" class="col-sm-12">
+                        <mat-label>Sectors</mat-label>
+                        <mat-select formControlName="sector">
+                            <mat-option *ngFor="let sector of sectorList" [value]="sector.id">
+                                  {{sector.name}}
+                            </mat-option>
+                        </mat-select>  
+                    </mat-form-field>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label"> Listed Exchanges</label>
+                <div class="col">
+                    <mat-form-field appearance="fill" class="col-sm-12">
+                        <mat-label>Stock Exchange</mat-label>
+                        <mat-select formControlName="stockexchange" multiple>
+                            <mat-option *ngFor="let exchange of exchangeList" [value]="exchange.id">
+                                  {{exchange.stockExchange}}
+                            </mat-option>
+                        </mat-select>  
+                    </mat-form-field>
+                    
+                    
+                </div>
+            </div>
+
+        
+
+            
+            <div class="form-group row">
+                <div class="col-sm-3 col-form-label">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-label > Company Codes </mat-label>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="button" type="button" mat-mini-fab color="accent" aria-label="icon button" (click)="addCompanyCode()"><mat-icon>add</mat-icon></button>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col">
+                    <section *ngFor="let code of codes; let i = index;">
+                        <div class="row">
+                        <div class="col-sm-10">
+                        <mat-form-field fxFill>
+                           <input matInput placeholder="Code" [(ngModel)]="code.code" [ngModelOptions]="{standalone: true}" name="code_{{code.id}}">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-2 rmbtn">
+                        <button type="button" mat-mini-fab color="warn" aria-label="icon button" (click)="removeCode(i)"><mat-icon>remove</mat-icon></button>
+                    </div>
+                </div>
+                    </section>
+                    
+                    
+                </div>
+            </div>
+            
+            
+            
+                <button class= "submit" mat-raised-button type="submit">Add Company</button>
+            
+          </form>
+          
+    </mat-card>
+</div>
