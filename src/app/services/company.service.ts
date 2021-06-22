@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { from, Observable, throwError } from 'rxjs';
 
 import { map, catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment.prod';
 import { AuthServiceService } from '../auth-service.service';
 
 import { Company } from '../model/company';
@@ -17,6 +18,7 @@ import { StockPrice } from '../model/stockprice';
 export class CompanyService {
 
   private readonly SECTOR='SECTOR';
+  baseUrl= environment.baseUrl;
 
   private stockPriceList!: Observable<StockPrice[]>;
   sector: Sector[] = [];
@@ -31,7 +33,7 @@ export class CompanyService {
   add(newcompany: { company: Company, companyCode: string[]}): void {
     
     console.log(newcompany);
-    this.http.post<any>(`http://localhost:8080/api/company/add`, newcompany,this.httpOptions)
+    this.http.post<any>(`${this.baseUrl}/api/company/add`, newcompany,this.httpOptions)
       .subscribe(
         (response) => {
           console.log(response);
@@ -41,7 +43,7 @@ export class CompanyService {
   }
 
   getStocks(sp:{companyID: number, exchangeID:number, startDate: Date,endDate: Date}){
-    return this.http.post<any>(`http://localhost:8080/api/company/price`,sp,this.httpOptions).pipe(
+    return this.http.post<any>(`${this.baseUrl}/api/company/price`,sp,this.httpOptions).pipe(
 
       map((data: StockPrice[]) => {
 
@@ -61,7 +63,7 @@ export class CompanyService {
   }
 
   getSectorList(){
-    this.http.get(`http://localhost:8080/api/sector/all`,this.httpOptions).subscribe(
+    this.http.get(`${this.baseUrl}/api/sector/all`,this.httpOptions).subscribe(
       (response) => {
         this.sector=<Sector[]> response;
         this.storeSector(this.sector);

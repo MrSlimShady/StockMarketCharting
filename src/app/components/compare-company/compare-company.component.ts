@@ -11,6 +11,7 @@ import { Company } from 'src/app/model/company';
 import { Exchange } from 'src/app/model/exchange';
 import { StockPrice } from 'src/app/model/stockprice';
 import { CompanyService } from 'src/app/services/company.service';
+import { environment } from 'src/environments/environment.prod';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class CompareCompanyComponent implements OnInit {
   compareCompanyForm: FormGroup = new FormGroup({});
   companyList: Company[]=[];
   exchange: Exchange[]=[];
+  baseUrl= environment.baseUrl;
 
   companyname = new FormControl();
 
@@ -57,11 +59,10 @@ export class CompareCompanyComponent implements OnInit {
     chart: {
       caption: "Stock Price",
       yaxisname: "Price in INR",
-      subcaption: "2012-2016",
+      subcaption: `${this.datefilter(this.startdate.value)} - ${this.datefilter(this.enddate.value)}`,
       showhovereffect: "1",
-      numbersuffix: " INR",
       drawcrossline: "1",
-      plottooltext: "<b>$dataValue</b> share price of $seriesName",
+      plottooltext: "<b>$dataValue</b> price per share of $seriesName",
       theme: "fusion"
     },
     categories: [
@@ -84,7 +85,7 @@ export class CompareCompanyComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.http.get(`http://localhost:8080/api/company/all`,this.httpOptions).subscribe(
+    this.http.get(`${this.baseUrl}/api/company/all`,this.httpOptions).subscribe(
       (response) => {
         this.companyList=<Company[]> response;
         this.companyList.forEach(company => this.options.push(company.companyName));

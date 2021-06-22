@@ -2,6 +2,7 @@ import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of, Observable, BehaviorSubject } from 'rxjs';
 import { catchError, mapTo, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment.prod';
 import { Tokens } from './model/tokens';
 
 @Injectable({
@@ -12,6 +13,7 @@ export class AuthServiceService {
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private readonly ROLE='ROLE';
   private loggedUser: string='';
+  baseUrl= environment.baseUrl;
   
   role!: string;
   private loggedIn = new BehaviorSubject<boolean>(false);
@@ -24,9 +26,10 @@ export class AuthServiceService {
 
   login(user: { username: string, password: string }): Observable<boolean> {
     
-    return this.http.post<any>(`http://localhost:8080/api/auth/signin`, user)
+    return this.http.post<any>(`${this.baseUrl}/api/auth/signin`, user)
       .pipe(
-        tap(tokens => {this.doLoginUser(user.username, tokens);}),
+        tap(tokens => {this.doLoginUser(user.username, tokens);
+  }),
         mapTo(true),
         catchError(error => {
           console.error();
@@ -35,7 +38,7 @@ export class AuthServiceService {
   }
 
   register(user: { username: string, password: string ,email: string,mobileNumber: string,role: string}): void {
-    this.http.post<any>(`http://localhost:8080/api/auth/signup`, user).subscribe(
+    this.http.post<any>(`${this.baseUrl}/api/auth/signup`, user).subscribe(
       (response) => {
         console.log(response);
       },

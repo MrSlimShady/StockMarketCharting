@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/auth-service.service';
 import { Ipo } from 'src/app/model/ipo';
 import { IpoService } from 'src/app/services/ipo.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-add-ipo',
@@ -15,6 +16,7 @@ export class AddIpoComponent implements OnInit {
   ipoForm: FormGroup = new FormGroup({});
   date = new FormControl(new Date());
   ipoList: Ipo[]=[];
+  baseUrl= environment.baseUrl;
 
   headers_object = new HttpHeaders().set("Authorization", "Bearer " + this.authService.getJwtToken());
   httpOptions = {
@@ -25,7 +27,7 @@ export class AddIpoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.http.get(`http://localhost:8080/api/ipo/all`,this.httpOptions).subscribe(
+    this.http.get(`${this.baseUrl}/api/ipo/all`,this.httpOptions).subscribe(
       (response) => {
         this.ipoList=<Ipo[]> response;
       },
@@ -73,7 +75,7 @@ export class AddIpoComponent implements OnInit {
   }
 
   delist(ipo:Ipo){
-    this.http.post<any>(`http://localhost:8080/api/ipo/delete`,ipo,this.httpOptions).subscribe(
+    this.http.post<any>(`${this.baseUrl}/api/ipo/delete`,ipo,this.httpOptions).subscribe(
       (response) => {
         console.log(response);
       },

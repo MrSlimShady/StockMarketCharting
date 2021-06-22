@@ -8,7 +8,7 @@ import { Exchange } from 'src/app/model/exchange';
 import { Sector } from 'src/app/model/sector';
 import { CompanyService } from 'src/app/services/company.service';
 import { ExchangeService } from 'src/app/services/exchange.service';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.prod';
 
 @Component({
   selector: 'app-add-company',
@@ -37,14 +37,14 @@ export class AddCompanyComponent implements OnInit {
   constructor(private authService:AuthServiceService,private companyService:CompanyService, private http:HttpClient,private exchangeService: ExchangeService,private formBuilder: FormBuilder,private router: Router) { }
 
   ngOnInit(): void {
-    this.http.get(`http://localhost:8080/api/exchange/all`,this.httpOptions).subscribe(
+    this.http.get(`${this.baseUrl}/api/exchange/all`,this.httpOptions).subscribe(
       (response) => {
         this.exchangeList=<Exchange[]> response;
       },
       (error) => console.log(error)
     )
 
-    this.http.get(`http://localhost:8080/api/sector/all`,this.httpOptions).subscribe(
+    this.http.get(`${this.baseUrl}/api/sector/all`,this.httpOptions).subscribe(
       (response) => {
         this.sectorList=<Sector[]> response;
       },

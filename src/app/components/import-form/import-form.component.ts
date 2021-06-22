@@ -4,6 +4,7 @@ import { FormBuilder,FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthServiceService } from 'src/app/auth-service.service';
 import { StockPrice } from 'src/app/model/stockprice';
+import { environment } from 'src/environments/environment.prod';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -13,7 +14,8 @@ import * as XLSX from 'xlsx';
 })
 export class ImportFormComponent implements OnInit {
   file!: File;
-  SERVER_URL = "http://localhost:8080/api/excel/upload";
+  baseUrl= environment.baseUrl;
+  SERVER_URL = `${this.baseUrl}/api/excel/upload`;
   uploadForm: FormGroup = new FormGroup({});
   fileName: any;
 

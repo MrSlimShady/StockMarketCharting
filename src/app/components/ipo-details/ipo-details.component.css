@@ -13,7 +13,6 @@ table {
   }
 
 
-  .main{
-    padding: 20px;
-    width: 80%;
+  .flex-column{
+    padding-top: 30px;
   }

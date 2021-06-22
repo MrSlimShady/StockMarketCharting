@@ -6,6 +6,7 @@ import { AuthServiceService } from 'src/app/auth-service.service';
 import { Company } from 'src/app/model/company';
 import { Ipo } from 'src/app/model/ipo';
 import { IpoService } from 'src/app/services/ipo.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-ipo-details',
@@ -16,6 +17,8 @@ export class IpoDetailsComponent implements OnInit {
   ipoList: Ipo[]=[];
   displayedColumns: string[] = ['companyName', 'stockExchange', 'pricePerShare','openingDate','remarks'];
 
+  baseUrl= environment.baseUrl;
+  
   headers_object = new HttpHeaders().set("Authorization", "Bearer " + this.authService.getJwtToken());
   httpOptions = {
     headers: this.headers_object
@@ -23,7 +26,7 @@ export class IpoDetailsComponent implements OnInit {
   constructor(private authService:AuthServiceService,private http:HttpClient,private router: Router) { }
 
   ngOnInit(): void {
-    this.http.get(`http://localhost:8080/api/ipo/all`,this.httpOptions).subscribe(
+    this.http.get(`${this.baseUrl}/api/ipo/all`,this.httpOptions).subscribe(
       (response) => {
         this.ipoList=<Ipo[]> response;
       },
